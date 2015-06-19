@@ -189,8 +189,7 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 				$weight = $db->query( 'SELECT max(weight) FROM ' . TABLE_LOCALION_NAME . '_district' )->fetchColumn();
 				$weight = intval( $weight ) + 1;
 
-				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_district VALUES(  
-					NULL,  
+				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_district (city_id,title,alias,weight,status)VALUES(    
 					' . intval( $data['city_id'] ) . ', 
 					' . $db->quote( $data['title'] ) . ', 
 					' . $db->quote( $data['alias'] ) . ', 
@@ -294,7 +293,11 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 $per_page = 50;
 
 $page = $nv_Request->get_int( 'page', 'get', 0 );
-
+$page = $nv_Request->get_int( 'page', 'get', 0 );
+if($page==0){
+	$page=1;
+}
+$page = ($page-1)*$per_page;
 $city_id = $nv_Request->get_int( 'city_id', 'get', 0 );
 
 $sql = TABLE_LOCALION_NAME . '_district WHERE 1';

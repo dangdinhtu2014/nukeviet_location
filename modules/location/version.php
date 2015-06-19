@@ -14,7 +14,7 @@ $module_version = array(
     "submenu" => "main", 
 	"is_sysmod" => 0, 
     "virtual" => 1, 
-    "version" => "4.0.01", 
+    "version" => "4.0.16", 
     "date" => "Mon, 19 Jan 2015 11:09:15 GMT", 
     "author" => "DANG DINH TU (dlinhvan@gmail.com)", 
     "note" => "", "uploads_dir" => array( 

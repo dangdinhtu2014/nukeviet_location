@@ -338,6 +338,10 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 $per_page = 50;
 
 $page = $nv_Request->get_int( 'page', 'get', 0 );
+if($page==0){
+	$page=1;
+}
+$page = ($page-1)*$per_page;
 
 $district_id = $nv_Request->get_int( 'district_id', 'get', 0 );
 $city_id = $nv_Request->get_int( 'city_id', 'get', 0 );
@@ -382,16 +386,14 @@ else
 }
 
 $base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;sort=' . $sort . '&amp;order=' . $order . '&amp;per_page=' . $per_page;
- 
-$result = $db->query( 'SELECT * FROM ' . $sql . ' LIMIT ' . $page . ',' . $per_page );
 
+$result = $db->query( 'SELECT * FROM ' . $sql . ' LIMIT ' . $page . ',' . $per_page );
 $array = array();
 
 while( $rows = $result->fetch() )
 {
 	$array[] = $rows;
 }
-
 $xtpl = new XTemplate( "ward.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
 $xtpl->assign( 'GLANG', $lang_global );

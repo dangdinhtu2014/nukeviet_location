@@ -47,6 +47,8 @@ $lang_module['city_error_security'] = 'Lỗi phát hiện vấn đề bảo mậ
 $lang_module['city_error_save'] = 'Lỗi không cập nhật được Tỉnh/Thành phố. Hãy kiểm tra lại tên Tỉnh/Thành phố có thể bị trùng'; 
 $lang_module['city_error_ward'] = 'Lỗi: Không thể xoá. Tỉnh/Thành này đang được sử dụng ở %s Xã/Phường';
 $lang_module['city_error_district'] = 'Lỗi: Không thể xoá. Tỉnh/Thành phố này đang được sử dụng ở %s Quận/Huyện';
+$lang_module['city_error_city'] = 'Lỗi: Bạn chưa chọn Tỉnh/Thành';
+
   
 $lang_module['district'] = 'Quận/Huyện';
 $lang_module['district_list'] = 'Danh sách Quận/Huyện';
@@ -54,7 +56,7 @@ $lang_module['district_name'] = 'Tên Quận/Huyện';
 $lang_module['district_add'] = 'Thêm Quận/Huyện';
 $lang_module['district_edit'] = 'Sửa Quận/Huyện';
 $lang_module['district_add_ward'] = 'Thêm Xã/Phường';
-$lang_module['district_select_city'] = 'Chọn Quận/Huyện';
+$lang_module['district_select_city'] = 'Chọn Tỉnh/Thành phố';
 $lang_module['district_insert_success'] = 'Thêm Quận/Huyện thành công';
 $lang_module['district_update_success'] = 'Cập nhật Quận/Huyện thành công';
 $lang_module['district_delete_success'] = 'Xoá Quận/Huyện thành công';
