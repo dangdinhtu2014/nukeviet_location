@@ -181,16 +181,14 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 		}
 		if( empty( $error ) )
 		{
-			$data['alias'] = change_alias( $data['title'] );
+			$data['alias'] = change_alias( $data['title'].'-'.$data['district_id'] );
 
 			if( $data['district_id'] == 0 )
 			{
-
-				$weight = $db->query( 'SELECT max(weight) FROM ' . TABLE_LOCALION_NAME . '_district' )->fetchColumn();
+				$weight = $db->query( 'SELECT max(weight) FROM ' . TABLE_LOCALION_NAME . '_district WHERE city_id= "'. $data['city_id'].'"' )->fetchColumn();
 				$weight = intval( $weight ) + 1;
 
-				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_district VALUES(  
-					NULL,  
+				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_district (city_id,title,alias,weight,status)VALUES(    
 					' . intval( $data['city_id'] ) . ', 
 					' . $db->quote( $data['title'] ) . ', 
 					' . $db->quote( $data['alias'] ) . ', 
@@ -200,10 +198,22 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 
 				if( $data['district_id'] > 0 )
 				{
+					$data['alias'] = change_alias( $data['title'].'-'.$data['district_id'] );
+					$sql = 'UPDATE ' . TABLE_LOCALION_NAME . '_district SET 
+						alias = ' . $db->quote( $data['alias'] ) . ' 
+						WHERE district_id=' . $data['district_id'];
+					if( $db->query( $sql ) )
+					{
+						$nv_Request->set_Session( $module_data . '_success', $lang_module['district_insert_success'] );
 
-					$nv_Request->set_Session( $module_data . '_success', $lang_module['district_insert_success'] );
+						nv_insert_logs( NV_LANG_DATA, $module_name, 'Add A District', 'district_id: ' . $data['district_id'], $admin_info['userid'] );
+					}
+					else
+					{
+						$error['warning'] = $lang_module['district_error_save'];
 
-					nv_insert_logs( NV_LANG_DATA, $module_name, 'Add A District', 'district_id: ' . $data['district_id'], $admin_info['userid'] );
+					}
+					
 
 				}
 				else
@@ -294,7 +304,11 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 $per_page = 50;
 
 $page = $nv_Request->get_int( 'page', 'get', 0 );
-
+$page = $nv_Request->get_int( 'page', 'get', 0 );
+if($page==0){
+	$page=1;
+}
+$page = ($page-1)*$per_page;
 $city_id = $nv_Request->get_int( 'city_id', 'get', 0 );
 
 $sql = TABLE_LOCALION_NAME . '_district WHERE 1';
@@ -303,23 +317,28 @@ if( $city_id > 0 )
 {
 	$sql .= ' AND city_id = ' . $city_id;
 }
+if( $city_id > 0 ){
+	$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql .' AND city_id = ' . $city_id)->fetchColumn();
+}else
+{
+	$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql)->fetchColumn();
+}
 
-$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql )->fetchColumn();
 
 $sort = $nv_Request->get_string( 'sort', 'get', '' );
 
 $order = $nv_Request->get_string( 'order', 'get' ) == 'desc' ? 'desc' : 'asc';
 
 $sort_data = array( 'title', 'weight' );
-
+$sql .= " ORDER BY  city_id  ASC";
 if( isset( $sort ) && in_array( $sort, $sort_data ) )
 {
 
-	$sql .= " ORDER BY " . $sort;
+	$sql .= ", " . $sort;
 }
 else
 {
-	$sql .= " ORDER BY weight";
+	$sql .= ", weight";
 }
 
 if( isset( $order ) && ( $order == 'desc' ) )
@@ -363,6 +382,9 @@ if( $nv_Request->get_string( $module_data . '_success', 'session' ) )
 if( ! empty( $array ) )
 {
 	$a = 1;
+	if( $city_id > 0){ 
+			$xtpl->parse( 'main.weightshowlang' );
+	}
 	foreach( $array as $item )
 	{
 
@@ -381,14 +403,16 @@ if( ! empty( $array ) )
 		$item['city_link'] = NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=district&city_id=" . $item['city_id'];
 
 		$xtpl->assign( 'LOOP', $item );
+		if($city_id > 0){ 
+			for( $i = 1; $i <= $num_items; ++$i )
+			{
+				$xtpl->assign( 'WEIGHT', array( 'w' => $i, 'selected' => ( $i == $item['weight'] ) ? ' selected="selected"' : '' ) );
 
-		for( $i = 1; $i <= $num_items; ++$i )
-		{
-			$xtpl->assign( 'WEIGHT', array( 'w' => $i, 'selected' => ( $i == $item['weight'] ) ? ' selected="selected"' : '' ) );
-
-			$xtpl->parse( 'main.loop.weight' );
+				$xtpl->parse( 'main.loop.weightshow.weight' );
+			}
+			 $xtpl->parse( 'main.loop.weightshow' );
+			 
 		}
-
 		$xtpl->parse( 'main.loop' );
 		++$a;
 	}

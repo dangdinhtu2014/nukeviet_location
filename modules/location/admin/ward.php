@@ -46,6 +46,10 @@ if( ACTION_METHOD == 'weight' )
 	$token = $nv_Request->get_title( 'token', 'post', '', 1 );
 
 	$new_vid = $nv_Request->get_int( 'new_vid', 'post', 0 );
+	
+	$district_id = $nv_Request->get_int( 'district_id', 'post', 0 );
+	
+	//$city_id = $nv_Request->get_int( 'city_id', 'post', 0 );
 
 	if( ! isset( $getWard[$ward_id] ) )
 	{
@@ -56,8 +60,7 @@ if( ACTION_METHOD == 'weight' )
 	{
 		if( $new_vid > 0 )
 		{
-			$sql = 'SELECT ward_id FROM ' . TABLE_LOCALION_NAME . '_ward WHERE ward_id != ' . $ward_id . ' ORDER BY weight ASC';
-
+			$sql = 'SELECT ward_id FROM ' . TABLE_LOCALION_NAME . '_ward WHERE ward_id != ' . $ward_id . ' AND district_id = ' . $district_id . ' ORDER BY weight ASC';
 			$result = $db->query( $sql );
 
 			$weight = 0;
@@ -205,7 +208,7 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 		}
 		if( empty( $error ) )
 		{
-			$data['alias'] = change_alias( $data['title'] );
+			$data['alias'] = change_alias( $data['title']."-".$data['ward_id'] );
 
 			if( $data['ward_id'] == 0 )
 			{
@@ -338,6 +341,10 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 $per_page = 50;
 
 $page = $nv_Request->get_int( 'page', 'get', 0 );
+if($page==0){
+	$page=1;
+}
+$page = ($page-1)*$per_page;
 
 $district_id = $nv_Request->get_int( 'district_id', 'get', 0 );
 $city_id = $nv_Request->get_int( 'city_id', 'get', 0 );
@@ -353,23 +360,28 @@ if( $city_id > 0 )
 {
 	$sql .= ' AND city_id = ' . $city_id;
 }
-
-$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql )->fetchColumn();
-
+if( $district_id > 0 ){
+	$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql .' AND district_id = ' . $district_id)->fetchColumn();
+}else
+{
+	$num_items = $db->query( 'SELECT COUNT(*) FROM ' . $sql)->fetchColumn();
+}
 $sort = $nv_Request->get_string( 'sort', 'get', '' );
 
 $order = $nv_Request->get_string( 'order', 'get' ) == 'desc' ? 'desc' : 'asc';
 
 $sort_data = array( 'title', 'weight' );
 
+$sql .= " ORDER BY  district_id ASC";
+
 if( isset( $sort ) && in_array( $sort, $sort_data ) )
 {
 
-	$sql .= " ORDER BY " . $sort;
+	$sql .= ", " . $sort;
 }
 else
 {
-	$sql .= " ORDER BY weight";
+	$sql .= ", weight";
 }
 
 if( isset( $order ) && ( $order == 'desc' ) )
@@ -380,18 +392,14 @@ else
 {
 	$sql .= " ASC";
 }
-
 $base_url = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;sort=' . $sort . '&amp;order=' . $order . '&amp;per_page=' . $per_page;
- 
 $result = $db->query( 'SELECT * FROM ' . $sql . ' LIMIT ' . $page . ',' . $per_page );
-
 $array = array();
 
 while( $rows = $result->fetch() )
 {
 	$array[] = $rows;
 }
-
 $xtpl = new XTemplate( "ward.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
 $xtpl->assign( 'GLANG', $lang_global );
@@ -413,6 +421,9 @@ if( $nv_Request->get_string( $module_data . '_success', 'session' ) )
 if( ! empty( $array ) )
 {
 	$a = 1;
+	if($district_id >0){ 
+		$xtpl->parse( 'main.weightshowlang' );
+	}
 	foreach( $array as $item )
 	{
 
@@ -432,20 +443,23 @@ if( ! empty( $array ) )
 
  
 		$xtpl->assign( 'LOOP', $item );
+		if($district_id >0){ 
+			
+			 for( $i = 1; $i <= $num_items; ++$i )
+			 {
+				 $xtpl->assign( 'WEIGHT', array( 'w' => $i, 'selected' => ( $i == $item['weight'] ) ? ' selected="selected"' : '' ) );
 
-		for( $i = 1; $i <= $num_items; ++$i )
-		{
-			$xtpl->assign( 'WEIGHT', array( 'w' => $i, 'selected' => ( $i == $item['weight'] ) ? ' selected="selected"' : '' ) );
-
-			$xtpl->parse( 'main.loop.weight' );
+				 $xtpl->parse( 'main.loop.weightshow.weight' );
+			 }
+			 $xtpl->parse( 'main.loop.weightshow' );
 		}
-
 		$xtpl->parse( 'main.loop' );
+		
 		++$a;
 	}
 
 }
-
+ 
 $generate_page = nv_generate_page( $base_url, $num_items, $per_page, $page );
 
 if( ! empty( $generate_page ) )

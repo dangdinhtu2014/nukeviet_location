@@ -150,8 +150,8 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 
 	if( $data['city_id'] > 0 )
 	{
-		$data = $db->query( 'SELECT * FROM ' . TABLE_LOCALION_NAME . '_city WHERE city_id=' . $data['city_id'] )->fetch();
-		
+		$result = $db->query( 'SELECT * FROM ' . TABLE_LOCALION_NAME . '_city WHERE city_id=' . $data['city_id'] );
+		$data=$result->fetch();
 		$caption = $lang_module['city_edit'];
  
 	}
@@ -181,12 +181,10 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 				$weight = $db->query( 'SELECT max(weight) FROM ' . TABLE_LOCALION_NAME . '_city' )->fetchColumn();
 				$weight = intval( $weight ) + 1;
 
-				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_city VALUES(  
-					NULL,  
+				$query = 'INSERT INTO ' . TABLE_LOCALION_NAME . '_city(title,alias,weight,status) VALUES(   
 					' . $db->quote( $data['title'] ) . ', 
 					' . $db->quote( $data['alias'] ) . ', 
-					' . intval( $weight ) . ', 1 )';
-					
+					' . intval( $weight ) . ', 1 )';	
 				$data['city_id'] =  ( int ) $db->insert_id( $query );
  
 				if( $data['city_id'] > 0 )
@@ -274,6 +272,11 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 $per_page = 50;
 
 $page = $nv_Request->get_int( 'page', 'get', 0 );
+$page = $nv_Request->get_int( 'page', 'get', 0 );
+if($page==0){
+	$page=1;
+}
+$page = ($page-1)*$per_page;
 $city_id = $nv_Request->get_int( 'city_id', 'get', 0 );
 
 $sql = TABLE_LOCALION_NAME . '_city WHERE 1';
@@ -326,7 +329,6 @@ $xtpl->assign( 'LANG', $lang_module );
 $xtpl->assign( 'GLANG', $lang_global );
 $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
 $xtpl->assign( 'MODULE_FILE', $module_file );
-$xtpl->assign( 'CAPTION', $caption );
 $xtpl->assign( 'TOKEN', md5( $global_config['sitekey'] . session_id() ) );
 $xtpl->assign( 'ADD_NEW', NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '='. $op .'&amp;action=add' );
 
