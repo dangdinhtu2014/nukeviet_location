@@ -24,8 +24,10 @@
 						<tr>
 							<td class="text-center" width="10">
 								<input name="check_all[]" type="checkbox" value="yes" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" >
-							</td>     
-							<td class="text-center" width="80">{LANG.weight}</td>
+							</td>  
+							<!-- BEGIN: weightshowlang -->
+								<td class="text-center" width="80">{LANG.weight}</td>
+							<!-- END: weightshowlang -->
 							<td align="left">{LANG.district_name}</td>
 							<td align="left">{LANG.city_name}</td>
 							<td class="text-center"width="150">{LANG.action}</td>
@@ -38,13 +40,15 @@
 							<td class="text-center">
 								<input type="checkbox" name="selected[]" value="{LOOP.district_id}" >
 							</td>
-							<td class="text-center">
-								<select id="change_weight_{LOOP.district_id}" onchange="nv_change_district( '{LOOP.district_id}','weight');" class="form-control">
-									<!-- BEGIN: weight -->
-									<option value="{WEIGHT.w}"{WEIGHT.selected}>{WEIGHT.w}</option>
-									<!-- END: weight -->
-								</select>
-							</td>
+							<!-- BEGIN: weightshow -->
+								<td class="text-center">
+									<select id="change_weight_{LOOP.district_id}" onchange="nv_change_district( '{LOOP.district_id}','weight');" class="form-control">
+										<!-- BEGIN: weight -->
+										<option value="{WEIGHT.w}"{WEIGHT.selected}>{WEIGHT.w}</option>
+										<!-- END: weight -->
+									</select>
+								</td>
+							<!-- END: weightshow -->
 							<td align="left"><a href="{LOOP.ward_link}">{LOOP.title}</a></td>
 							<td align="left"><a href="{LOOP.city_link}">{LOOP.city}</a></td>
 							<td class="text-right">
