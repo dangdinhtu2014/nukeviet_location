@@ -15,7 +15,6 @@ $allow_func = array( 'main', 'config', 'city', 'district', 'ward' );
 define( 'ACTION_METHOD', $nv_Request->get_string( 'action', 'get,post', '' ) ); 	
 	
 define( 'TABLE_LOCALION_NAME', NV_PREFIXLANG . '_' . $module_data ); 
-
 function getCity()
 {
 	global $module_name;
@@ -62,31 +61,49 @@ function fixWeightCity()
 function fixWeightDistrict()
 {
 	global $db, $module_data;
-
-	$sql = 'SELECT district_id FROM ' . TABLE_LOCALION_NAME . '_district ORDER BY weight ASC';
+	$sql = 'SELECT city_id FROM ' . TABLE_LOCALION_NAME . '_city ORDER BY weight ASC';
 	$result = $db->query( $sql );
-	$weight = 0;
 	while( $row = $result->fetch() )
 	{
-		$weight++;
-		$query = 'UPDATE ' . TABLE_LOCALION_NAME . '_district SET weight=' . $weight . ' WHERE district_id=' . $row['district_id'];
+	
+		$sql = 'SELECT district_id FROM ' . TABLE_LOCALION_NAME . '_district WHERE city_id=' . $row['city_id'] . ' ORDER BY weight ASC';
+		$resultd = $db->query( $sql );
+		$weight = 0;
+		while( $rowd = $resultd->fetch() )
+		{
+			$weight++;
+			$query = 'UPDATE ' . TABLE_LOCALION_NAME . '_district SET weight=' . $weight . ' WHERE district_id=' . $rowd['district_id'];
+			$db->query( $query );
+		}
+	
+	
+	
+	
+		$query = 'UPDATE ' . TABLE_LOCALION_NAME . '_city SET weight=' . $weight . ' WHERE city_id=' . $row['city_id'];
 		$db->query( $query );
 	}
+
 }
  
 function fixWeightWard()
 {
 	global $db, $module_data;
-
-	$sql = 'SELECT ward_id FROM ' . TABLE_LOCALION_NAME . '_ward ORDER BY weight ASC';
+	$sql = 'SELECT district_id FROM ' . TABLE_LOCALION_NAME . '_district ORDER BY weight ASC';
 	$result = $db->query( $sql );
-	$weight = 0;
 	while( $row = $result->fetch() )
 	{
-		$weight++;
-		$query = 'UPDATE ' . TABLE_LOCALION_NAME . '_ward SET weight=' . $weight . ' WHERE ward_id=' . $row['ward_id'];
-		$db->query( $query );
+		$sql = 'SELECT ward_id FROM ' . TABLE_LOCALION_NAME . '_ward WHERE district_id=' . $row['district_id'] . ' ORDER BY weight ASC';
+		$resultw = $db->query( $sql );
+		$weight = 0;
+		while( $roww = $resultw->fetch() )
+		{
+			$weight++;
+			$query = 'UPDATE ' . TABLE_LOCALION_NAME . '_ward SET weight=' . $weight . ' WHERE ward_id=' . $roww['ward_id'];
+			$db->query( $query );
+		}
+		
 	}
+	
 }
 
 define( 'NV_IS_FILE_ADMIN', true );

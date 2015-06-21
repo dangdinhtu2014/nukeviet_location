@@ -24,8 +24,10 @@
 						<tr>
 							<td class="text-center" width="10">
 								<input name="check_all[]" type="checkbox" value="yes" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" >
-							</td>     
-							<td class="text-center" width="80">{LANG.weight}</td>
+							</td>
+							<!-- BEGIN: weightshowlang -->
+								<td class="text-center" width="80">{LANG.weight}</td>
+							<!-- END: weightshowlang -->
 							<td align="left">{LANG.ward_name}</td>
 							<td align="left">{LANG.district_name}</td>
 							<td align="left">{LANG.city_name}</td>
@@ -39,13 +41,15 @@
 							<td class="text-center">
 								<input type="checkbox" name="selected[]" value="{LOOP.ward_id}" >
 							</td>
-							<td class="text-center">
-								<select id="change_weight_{LOOP.ward_id}" onchange="nv_change_ward( '{LOOP.ward_id}','weight');" class="form-control">
-									<!-- BEGIN: weight -->
-									<option value="{WEIGHT.w}"{WEIGHT.selected}>{WEIGHT.w}</option>
-									<!-- END: weight -->
-								</select>
-							</td>
+							<!-- BEGIN: weightshow -->
+								<td class="text-center">
+									<select id="change_weight_{LOOP.ward_id}" onchange="nv_change_ward( '{LOOP.ward_id}','weight','{LOOP.district_id}','{LOOP.city_id}');" class="form-control">
+										<!-- BEGIN: weight -->
+										<option value="{WEIGHT.w}"{WEIGHT.selected}>{WEIGHT.w}</option>
+										<!-- END: weight -->
+									</select>
+								</td>
+							<!-- END: weightshow -->
 							<td align="left">{LOOP.title}</td>
 							<td align="left"><a href="{LOOP.district_link}">{LOOP.district}</a></td>
 							<td align="left"> <a href="{LOOP.city_link}">{LOOP.city}</a> </td>
@@ -74,7 +78,7 @@
 </div>
 <script type="text/javascript" src="{NV_BASE_SITEURL}modules/{MODULE_FILE}/js/footer.js"></script>
 <script type="text/javascript">
-function nv_change_ward(ward_id, mod) {
+function nv_change_ward(ward_id, mod, district_id, city_id ) {
     var nv_timer = nv_settimeout_disable('change_' + mod + '_' + ward_id, 5000);
     var new_vid = $('#change_' + mod + '_' + ward_id).val();
  
@@ -82,7 +86,7 @@ function nv_change_ward(ward_id, mod) {
 		url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ward&action='+ mod +'&nocache=' + new Date().getTime(),
 		type: 'post',
 		dataType: 'json',
-		data: 'ward_id=' + ward_id + '&new_vid=' + new_vid,
+		data: 'ward_id=' + ward_id + '&new_vid=' + new_vid + '&district_id=' + district_id + '&city_id' + city_id,
 		success: function(json) 
 		{	 
 			$('.alert').remove(); 
