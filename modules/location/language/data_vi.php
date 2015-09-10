@@ -19,7 +19,7 @@ if( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
  
 
 
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_city (city_id, title, alias, weight, status, type) VALUES
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_city (city_id, title, alias, weight, status, type) VALUES
 (1, 'Hà Nội', 'Ha-Noi', 1, 1, 'Thành Phố'),
 (2, 'Hà Giang', 'Ha-Giang', 2, 1, 'Tỉnh'),
 (4, 'Cao Bằng', 'Cao-Bang', 3, 1, 'Tỉnh'),
@@ -82,9 +82,9 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (93, 'Hậu Giang', 'Hau-Giang', 60, 1, 'Tỉnh'),
 (94, 'Sóc Trăng', 'Soc-Trang', 61, 1, 'Tỉnh'),
 (95, 'Bạc Liêu', 'Bac-Lieu', 62, 1, 'Tỉnh'),
-(96, 'Cà Mau', 'Ca-Mau', 63, 1, 'Tỉnh');";
+(96, 'Cà Mau', 'Ca-Mau', 63, 1, 'Tỉnh');");
 
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_district (district_id, city_id, title, alias, type, location, weight, status) VALUES
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_district (district_id, city_id, title, alias, type, location, weight, status) VALUES
 (1, 1, 'Ba Đình', 'Ba-Dinh-1', 'Quận', '21 02 08N, 105 49 38E', 1, 1),
 (2, 1, 'Hoàn Kiếm', 'Hoan-Kiem-2', 'Quận', '21 01 53N, 105 51 09E', 2, 1),
 (3, 1, 'Tây Hồ', 'Tay-Ho-3', 'Quận', '21 04 10N, 105 49 07E', 3, 1),
@@ -702,8 +702,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (862, 86, 'Trà Ôn', 'Tra-On-862', 'Huyện', '9 59 20N, 105 57 56E', 7, 1),
 (863, 86, 'Bình Tân', 'Binh-Tan-863', 'Huyện', '', 8, 1),
 (866, 87, 'Cao Lãnh', 'Cao-Lanh-866', 'Thành Phố', '10 27 38N, 105 37 21E', 1, 1),
-(867, 87, 'Sa Đéc', 'Sa-Dec-867', 'Thị Xã', '10 19 22N, 105 44 31E', 2, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_district (district_id, city_id, title, alias, type, location, weight, status) VALUES
+(867, 87, 'Sa Đéc', 'Sa-Dec-867', 'Thị Xã', '10 19 22N, 105 44 31E', 2, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_district (district_id, city_id, title, alias, type, location, weight, status) VALUES
 (868, 87, 'Hồng Ngự', 'Hong-Ngu-868', 'Thị Xã', '', 3, 1),
 (869, 87, 'Tân Hồng', 'Tan-Hong-869', 'Huyện', '10 52 48N, 105 29 21E', 4, 1),
 (870, 87, 'Hồng Ngự', 'Hong-Ngu-870', 'Huyện', '10 48 13N, 105 19 00E', 5, 1),
@@ -783,9 +783,9 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (971, 96, 'Năm Căn', 'Nam-Can-971', 'Huyện', '8 46 59N, 104 58 20E', 7, 1),
 (972, 96, 'Phú Tân', 'Phu-Tan-972', 'Huyện', '8 52 47N, 104 53 35E', 8, 1),
 (973, 96, 'Ngọc Hiển', 'Ngoc-Hien-973', 'Huyện', '8 40 47N, 104 57 58E', 9, 1),
-(974, 1, 'Nghệ An', 'Nghe-An-974', '', '', 30, 1)";
+(974, 1, 'Nghệ An', 'Nghe-An-974', '', '', 30, 1)");
 
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (1, 1, 1, 'Phúc Xá', 'Phuc-Xa-1', 'Phường', '21 02 52N, 105 50 52E', 1, 1),
 (4, 1, 1, 'Trúc Bạch', 'Truc-Bach-4', 'Phường', '21 02 50N, 105 50 21E', 2, 1),
 (6, 1, 1, 'Vĩnh Phúc', 'Vinh-Phuc-6', 'Phường', '21 02 37N, 105 48 28E', 3, 1),
@@ -1377,8 +1377,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (1720, 51, 4, 'Chu Trinh', 'Chu-Trinh-1720', 'Xã', '22 36 17N, 106 18 55E', 23, 1),
 (1723, 51, 4, 'Hồng Nam', 'Hong-Nam-1723', 'Xã', '22 33 20N, 106 22 18E', 24, 1),
 (1726, 52, 4, 'Nguyên Bình', 'Nguyen-Binh-1726', 'Thị Trấn', '22 39 34N, 105 57 53E', 1, 1),
-(1729, 52, 4, 'Tĩnh Túc', 'Tinh-Tuc-1729', 'Thị Trấn', '22 38 52N, 105 52 44E', 2, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(1729, 52, 4, 'Tĩnh Túc', 'Tinh-Tuc-1729', 'Thị Trấn', '22 38 52N, 105 52 44E', 2, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (1732, 52, 4, 'Yên Lạc', 'Yen-Lac-1732', 'Xã', '22 45 52N, 105 51 24E', 3, 1),
 (1735, 52, 4, 'Triệu Nguyên', 'Trieu-Nguyen-1735', 'Xã', '22 43 36N, 105 54 41E', 4, 1),
 (1738, 52, 4, 'Ca Thành', 'Ca-Thanh-1738', 'Xã', '22 41 56N, 105 49 01E', 5, 1),
@@ -1970,8 +1970,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (3418, 106, 12, 'Bản Giang', 'Ban-Giang-3418', 'Xã', '22 19 06N, 103 30 44E', 10, 1),
 (3421, 106, 12, 'Bản Hon', 'Ban-Hon-3421', 'Xã', '22 18 27N, 103 33 30E', 11, 1),
 (3424, 106, 12, 'Bản Bo', 'Ban-Bo-3424', 'Xã', '22 16 56N, 103 43 03E', 12, 1),
-(3427, 106, 12, 'Nà Tăm', 'Na-Tam-3427', 'Xã', '22 16 30N, 103 38 33E', 13, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(3427, 106, 12, 'Nà Tăm', 'Na-Tam-3427', 'Xã', '22 16 30N, 103 38 33E', 13, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (3430, 106, 12, 'Khun Há', 'Khun-Ha-3430', 'Xã', '22 13 47N, 103 35 46E', 14, 1),
 (3433, 107, 12, 'Mường Tè', 'Muong-Te-3433', 'Thị Trấn', '22 22 46N, 102 48 40E', 1, 1),
 (3436, 107, 12, 'Thu Lũm', 'Thu-Lum-3436', 'Xã', '22 42 46N, 102 28 14E', 2, 1),
@@ -2548,8 +2548,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (5113, 154, 17, 'Tân Phong', 'Tan-Phong-5113', 'Xã', '20 40 44N, 105 20 28E', 9, 1),
 (5116, 154, 17, 'Dũng Phong', 'Dung-Phong-5116', 'Xã', '20 39 34N, 105 20 09E', 10, 1),
 (5119, 154, 17, 'Nam Phong', 'Nam-Phong-5119', 'Xã', '20 38 24N, 105 18 56E', 11, 1),
-(5122, 154, 17, 'Yên Lập', 'Yen-Lap-5122', 'Xã', '20 38 13N, 105 21 59E', 12, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(5122, 154, 17, 'Yên Lập', 'Yen-Lap-5122', 'Xã', '20 38 13N, 105 21 59E', 12, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (5125, 154, 17, 'Yên Thượng', 'Yen-Thuong-5125', 'Xã', '20 36 50N, 105 22 24E', 13, 1),
 (5128, 155, 17, 'Mường Khến', 'Muong-Khen-5128', 'Thị Trấn', '20 37 16N, 105 16 59E', 1, 1),
 (5131, 155, 17, 'Ngòi Hoa', 'Ngoi-Hoa-5131', 'Xã', '20 44 31N, 105 09 56E', 2, 1),
@@ -3123,8 +3123,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (6835, 196, 22, 'Phương Nam', 'Phuong-Nam-6835', 'Xã', '21 01 05N, 106 41 39E', 10, 1),
 (6838, 198, 22, 'Bình Liêu', 'Binh-Lieu-6838', 'Thị Trấn', '21 31 32N, 107 23 41E', 1, 1),
 (6841, 198, 22, 'Hoành Mô', 'Hoanh-Mo-6841', 'Xã', '21 35 14N, 107 29 12E', 2, 1),
-(6844, 198, 22, 'Đồng Tâm', 'Dong-Tam-6844', 'Xã', '21 35 11N, 107 26 08E', 3, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(6844, 198, 22, 'Đồng Tâm', 'Dong-Tam-6844', 'Xã', '21 35 11N, 107 26 08E', 3, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (6847, 198, 22, 'Đồng Văn', 'Dong-Van-6847', 'Xã', '21 34 04N, 107 34 22E', 4, 1),
 (6850, 198, 22, 'Tình Húc', 'Tinh-Huc-6850', 'Xã', '21 31 59N, 107 23 23E', 5, 1),
 (6853, 198, 22, 'Vô Ngại', 'Vo-Ngai-6853', 'Xã', '21 31 10N, 107 20 44E', 6, 1),
@@ -3703,8 +3703,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (8554, 240, 25, 'Kiệt Sơn', 'Kiet-Son-8554', 'Xã', '21 13 41N, 104 56 08E', 4, 1),
 (8557, 240, 25, 'Đồng Sơn', 'Dong-Son-8557', 'Xã', '21 12 46N, 104 52 22E', 5, 1),
 (8560, 240, 25, 'Lai Đồng', 'Lai-Dong-8560', 'Xã', '21 12 54N, 104 54 55E', 6, 1),
-(8563, 238, 25, 'Sơn Hùng', 'Son-Hung-8563', 'Xã', '21 13 50N, 105 11 32E', 2, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(8563, 238, 25, 'Sơn Hùng', 'Son-Hung-8563', 'Xã', '21 13 50N, 105 11 32E', 2, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (8566, 240, 25, 'Tân Phú', 'Tan-Phu-8566', 'Xã', '21 12 35N, 105 00 03E', 7, 1),
 (8569, 240, 25, 'Mỹ Thuận', 'My-Thuan-8569', 'Xã', '21 12 13N, 105 03 57E', 8, 1),
 (8572, 238, 25, 'Địch Quả', 'Dich-Qua-8572', 'Xã', '21 12 05N, 105 07 32E', 3, 1),
@@ -4280,8 +4280,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (10267, 279, 1, 'Minh Cường', 'Minh-Cuong-10267', 'Xã', '20 45 51N, 105 54 04E', 29, 1),
 (10270, 280, 1, 'Phú Minh', 'Phu-Minh-10270', 'Thị Trấn', '20 46 59N, 105 54 59E', 1, 1),
 (10273, 280, 1, 'Phú Xuyên', 'Phu-Xuyen-10273', 'Thị Trấn', '20 44 24N, 105 54 28E', 2, 1),
-(10276, 280, 1, 'Hồng Minh', 'Hong-Minh-10276', 'Xã', '20 47 38N, 105 49 19E', 3, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(10276, 280, 1, 'Hồng Minh', 'Hong-Minh-10276', 'Xã', '20 47 38N, 105 49 19E', 3, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (10279, 280, 1, 'Phượng Dực', 'Phuong-Duc-10279', 'Xã', '20 47 28N, 105 51 11E', 4, 1),
 (10282, 280, 1, 'Văn Nhân', 'Van-Nhan-10282', 'Xã', '20 46 35N, 105 55 18E', 5, 1),
 (10285, 280, 1, 'Thụy Phú', 'Thuy-Phu-10285', 'Xã', '20 46 43N, 105 56 18E', 6, 1),
@@ -4841,8 +4841,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (11926, 317, 31, 'Hoàng Châu', 'Hoang-Chau-11926', 'Xã', '20 47 59N, 106 50 21E', 5, 1),
 (11929, 317, 31, 'Văn Phong', 'Van-Phong-11929', 'Xã', '20 47 44N, 106 51 48E', 6, 1),
 (11932, 317, 31, 'Phù Long', 'Phu-Long-11932', 'Xã', '20 50 12N, 106 55 55E', 7, 1),
-(11935, 317, 31, 'Gia Luận', 'Gia-Luan-11935', 'Xã', '20 50 12N, 106 59 59E', 8, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(11935, 317, 31, 'Gia Luận', 'Gia-Luan-11935', 'Xã', '20 50 12N, 106 59 59E', 8, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (11938, 317, 31, 'Hiền Hào', 'Hien-Hao-11938', 'Xã', '20 47 28N, 106 58 11E', 9, 1),
 (11941, 317, 31, 'Trân Châu', 'Tran-Chau-11941', 'Xã', '20 45 45N, 107 00 37E', 10, 1),
 (11944, 317, 31, 'Việt Hải', 'Viet-Hai-11944', 'Xã', '20 47 32N, 107 04 07E', 11, 1),
@@ -5404,8 +5404,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (13606, 353, 35, 'Nhân Khang', 'Nhan-Khang-13606', 'Xã', '20 32 53N, 106 02 49E', 15, 1),
 (13609, 353, 35, 'Nhân Mỹ', 'Nhan-My-13609', 'Xã', '20 32 03N, 106 07 44E', 16, 1),
 (13612, 353, 35, 'Nhân Nghĩa', 'Nhan-Nghia-13612', 'Xã', '20 32 34N, 106 05 07E', 17, 1),
-(13615, 353, 35, 'Nhân Chính', 'Nhan-Chinh-13615', 'Xã', '20 32 26N, 106 03 25E', 18, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(13615, 353, 35, 'Nhân Chính', 'Nhan-Chinh-13615', 'Xã', '20 32 26N, 106 03 25E', 18, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (13618, 353, 35, 'Nhân Bình', 'Nhan-Binh-13618', 'Xã', '20 31 49N, 106 06 16E', 19, 1),
 (13621, 353, 35, 'Phú Phúc', 'Phu-Phuc-13621', 'Xã', '20 31 36N, 106 09 29E', 20, 1),
 (13624, 353, 35, 'Xuân Khê', 'Xuan-Khe-13624', 'Xã', '20 31 36N, 106 06 57E', 21, 1),
@@ -5966,8 +5966,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (15277, 392, 38, 'Hà Vinh', 'Ha-Vinh-15277', 'Xã', '20 03 56N, 105 56 23E', 3, 1),
 (15280, 392, 38, 'Hà Bắc', 'Ha-Bac-15280', 'Xã', '20 04 02N, 105 49 44E', 4, 1),
 (15283, 392, 38, 'Hà Vân', 'Ha-Van-15283', 'Xã', '20 02 31N, 105 52 18E', 5, 1),
-(15286, 392, 38, 'Hà Yên', 'Ha-Yen-15286', 'Xã', '20 02 34N, 105 49 54E', 6, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(15286, 392, 38, 'Hà Yên', 'Ha-Yen-15286', 'Xã', '20 02 34N, 105 49 54E', 6, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (15289, 392, 38, 'Hà Thanh', 'Ha-Thanh-15289', 'Xã', '20 02 25N, 105 53 49E', 7, 1),
 (15292, 392, 38, 'Hà Giang', 'Ha-Giang-15292', 'Xã', '20 03 58N, 105 47 42E', 8, 1),
 (15295, 392, 38, 'Hà Dương', 'Ha-Duong-15295', 'Xã', '20 02 43N, 105 51 05E', 9, 1),
@@ -6526,8 +6526,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (16960, 419, 40, 'Nghĩa Bình', 'Nghia-Binh-16960', 'Xã', '19 21 55N, 105 29 18E', 7, 1),
 (16963, 419, 40, 'Nghĩa Thọ', 'Nghia-Tho-16963', 'Xã', '19 21 45N, 105 33 35E', 8, 1),
 (16966, 419, 40, 'Nghĩa Minh', 'Nghia-Minh-16966', 'Xã', '19 22 29N, 105 23 41E', 9, 1),
-(16969, 419, 40, 'Nghĩa Phú', 'Nghia-Phu-16969', 'Xã', '19 21 18N, 105 31 42E', 10, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(16969, 419, 40, 'Nghĩa Phú', 'Nghia-Phu-16969', 'Xã', '19 21 18N, 105 31 42E', 10, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (16972, 419, 40, 'Nghĩa Hưng', 'Nghia-Hung-16972', 'Xã', '19 21 29N, 105 19 36E', 11, 1),
 (16975, 419, 40, 'Nghĩa Hồng', 'Nghia-Hong-16975', 'Xã', '19 22 08N, 105 22 55E', 12, 1),
 (16978, 419, 40, 'Nghĩa Thịnh', 'Nghia-Thinh-16978', 'Xã', '19 21 56N, 105 21 16E', 13, 1),
@@ -7089,8 +7089,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (18613, 445, 42, 'Thạch Tiến', 'Thach-Tien-18613', 'Xã', '18 22 00N, 105 48 52E', 13, 1),
 (18616, 445, 42, 'Thạch Thanh', 'Thach-Thanh-18616', 'Xã', '18 22 10N, 105 50 09E', 14, 1),
 (18619, 445, 42, 'Thạch Trị', 'Thach-Tri-18619', 'Xã', '18 22 00N, 105 59 05E', 15, 1),
-(18622, 445, 42, 'Thạch Lạc', 'Thach-Lac-18622', 'Xã', '18 22 28N, 105 57 52E', 16, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(18622, 445, 42, 'Thạch Lạc', 'Thach-Lac-18622', 'Xã', '18 22 28N, 105 57 52E', 16, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (18625, 445, 42, 'Thạch Ngọc', 'Thach-Ngoc-18625', 'Xã', '18 21 19N, 105 47 21E', 17, 1),
 (18628, 445, 42, 'Tượng Sơn', 'Tuong-Son-18628', 'Xã', '18 20 42N, 105 56 07E', 18, 1),
 (18631, 445, 42, 'Thạch Văn', 'Thach-Van-18631', 'Xã', '18 20 56N, 105 59 29E', 19, 1),
@@ -7649,8 +7649,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (20258, 492, 48, 'Hoà Cường Nam', 'Hoa-Cuong-Nam-20258', 'Phường', '16 01 53N, 108 13 22E', 13, 1),
 (20260, 495, 48, 'Khuê Trung', 'Khue-Trung-20260', 'Phường', '16 01 31N, 108 12 34E', 1, 1),
 (20263, 493, 48, 'Thọ Quang', 'Tho-Quang-20263', 'Phường', '16 07 26N, 108 16 27E', 1, 1),
-(20266, 493, 48, 'Nại Hiên Đông', 'Nai-Hien-Dong-20266', 'Phường', '16 05 42N, 108 13 41E', 2, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(20266, 493, 48, 'Nại Hiên Đông', 'Nai-Hien-Dong-20266', 'Phường', '16 05 42N, 108 13 41E', 2, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (20269, 493, 48, 'Mân Thái', 'Man-Thai-20269', 'Phường', '16 05 16N, 108 14 31E', 3, 1),
 (20272, 493, 48, 'An Hải Bắc', 'An-Hai-Bac-20272', 'Phường', '16 04 40N, 108 13 59E', 4, 1),
 (20275, 493, 48, 'Phước Mỹ', 'Phuoc-My-20275', 'Phường', '16 04 16N, 108 14 28E', 5, 1),
@@ -8219,8 +8219,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (21883, 548, 52, 'Cát Hiệp', 'Cat-Hiep-21883', 'Xã', '14 01 38N, 108 58 54E', 11, 1),
 (21886, 548, 52, 'Cát Nhơn', 'Cat-Nhon-21886', 'Xã', '13 59 32N, 109 08 40E', 12, 1),
 (21889, 548, 52, 'Cát Hưng', 'Cat-Hung-21889', 'Xã', '13 59 21N, 109 11 15E', 13, 1),
-(21892, 548, 52, 'Cát Tường', 'Cat-Tuong-21892', 'Xã', '13 59 16N, 109 06 39E', 14, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(21892, 548, 52, 'Cát Tường', 'Cat-Tuong-21892', 'Xã', '13 59 16N, 109 06 39E', 14, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (21895, 548, 52, 'Cát Tân', 'Cat-Tan-21895', 'Xã', '13 58 01N, 109 02 56E', 15, 1),
 (21898, 548, 52, 'Cát Tiến', 'Cat-Tien-21898', 'Xã', '13 57 02N, 109 13 27E', 16, 1),
 (21901, 548, 52, 'Cát Thắng', 'Cat-Thang-21901', 'Xã', '13 56 48N, 109 10 51E', 17, 1),
@@ -8785,8 +8785,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (23503, 615, 62, 'Đắk Pxi', 'Dak-Pxi-23503', 'Xã', '14 44 09N, 108 00 44E', 2, 1),
 (23506, 615, 62, 'Đắk Hring', 'Dak-Hring-23506', 'Xã', '14 36 28N, 107 55 41E', 3, 1),
 (23509, 615, 62, 'Đắk Ui', 'Dak-Ui-23509', 'Xã', '14 36 05N, 108 00 40E', 4, 1),
-(23512, 615, 62, 'Đắk Mar', 'Dak-Mar-23512', 'Xã', '14 32 21N, 107 54 56E', 5, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(23512, 615, 62, 'Đắk Mar', 'Dak-Mar-23512', 'Xã', '14 32 21N, 107 54 56E', 5, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (23515, 615, 62, 'Ngok Wang', 'Ngok-Wang-23515', 'Xã', '14 30 04N, 107 59 20E', 6, 1),
 (23518, 615, 62, 'Ngok Réo', 'Ngok-Reo-23518', 'Xã', '14 29 28N, 108 03 22E', 7, 1),
 (23521, 615, 62, 'Hà Mòn', 'Ha-Mon-23521', 'Xã', '14 28 04N, 107 54 03E', 8, 1),
@@ -9382,8 +9382,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (25051, 679, 68, 'Gia Bắc', 'Gia-Bac-25051', 'Xã', '11 19 00N, 108 06 21E', 19, 1),
 (25054, 680, 68, 'Lộc Thắng', 'Loc-Thang-25054', 'Thị Trấn', '11 40 16N, 107 49 21E', 1, 1),
 (25057, 680, 68, 'Lộc Bảo', 'Loc-Bao-25057', 'Xã', '11 48 56N, 107 41 13E', 2, 1),
-(25060, 680, 68, 'Lộc Lâm', 'Loc-Lam-25060', 'Xã', '11 48 15N, 107 49 29E', 3, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(25060, 680, 68, 'Lộc Lâm', 'Loc-Lam-25060', 'Xã', '11 48 15N, 107 49 29E', 3, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (25063, 680, 68, 'Lộc Phú', 'Loc-Phu-25063', 'Xã', '11 45 24N, 107 52 20E', 4, 1),
 (25066, 680, 68, 'Lộc Bắc', 'Loc-Bac-25066', 'Xã', '11 44 50N, 107 36 18E', 5, 1),
 (25069, 680, 68, 'B'' Lá', 'B-La-25069', 'Xã', '11 42 59N, 107 43 37E', 6, 1),
@@ -9952,8 +9952,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (26647, 751, 77, 'Hòa Hiệp', 'Hoa-Hiep-26647', 'Xã', '10 42 29N, 107 29 47E', 10, 1),
 (26650, 751, 77, 'Hòa Hội', 'Hoa-Hoi-26650', 'Xã', '10 37 38N, 107 27 22E', 11, 1),
 (26653, 751, 77, 'Bưng Riềng', 'Bung-Rieng-26653', 'Xã', '10 33 06N, 107 29 27E', 12, 1),
-(26656, 751, 77, 'Bình Châu', 'Binh-Chau-26656', 'Xã', '10 34 32N, 107 32 03E', 13, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(26656, 751, 77, 'Bình Châu', 'Binh-Chau-26656', 'Xã', '10 34 32N, 107 32 03E', 13, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (26659, 752, 77, 'Long Điền', 'Long-Dien-26659', 'Thị Trấn', '10 29 02N, 107 12 36E', 1, 1),
 (26662, 752, 77, 'Long Hải', 'Long-Hai-26662', 'Thị Trấn', '10 23 58N, 107 14 10E', 2, 1),
 (26665, 752, 77, 'An Ngãi', 'An-Ngai-26665', 'Xã', '10 27 29N, 107 12 42E', 3, 1),
@@ -10521,8 +10521,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (28330, 818, 82, 'Thạnh Mỹ', 'Thanh-My-28330', 'Xã', '10 33 12N, 106 12 27E', 4, 1),
 (28333, 818, 82, 'Thạnh Hoà', 'Thanh-Hoa-28333', 'Xã', '10 33 00N, 106 07 08E', 5, 1),
 (28336, 818, 82, 'Phú Mỹ', 'Phu-My-28336', 'Xã', '10 33 03N, 106 18 54E', 6, 1),
-(28339, 818, 82, 'Tân Hòa Thành', 'Tan-Hoa-Thanh-28339', 'Xã', '10 30 57N, 106 19 00E', 7, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(28339, 818, 82, 'Tân Hòa Thành', 'Tan-Hoa-Thanh-28339', 'Xã', '10 30 57N, 106 19 00E', 7, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (28342, 818, 82, 'Hưng Thạnh', 'Hung-Thanh-28342', 'Xã', '10 31 49N, 106 16 23E', 8, 1),
 (28345, 818, 82, 'Tân Lập 1', 'Tan-Lap-1-28345', 'Xã', '10 28 05N, 106 17 25E', 9, 1),
 (28348, 818, 82, 'Tân Hòa Tây', 'Tan-Hoa-Tay-28348', 'Xã', '10 29 59N, 106 07 57E', 10, 1),
@@ -11085,8 +11085,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (29986, 868, 87, 'An Bình B', 'An-Binh-B-29986', 'Xã', '10 47 41N, 105 25 01E', 6, 1),
 (29989, 868, 87, 'An Bình A', 'An-Binh-A-29989', 'Xã', '10 46 51N, 105 22 17E', 7, 1),
 (29992, 870, 87, 'Long Thuận', 'Long-Thuan-29992', 'Xã', '10 46 37N, 105 17 44E', 9, 1),
-(29995, 870, 87, 'Phú Thuận B', 'Phu-Thuan-B-29995', 'Xã', '10 44 14N, 105 20 44E', 10, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(29995, 870, 87, 'Phú Thuận B', 'Phu-Thuan-B-29995', 'Xã', '10 44 14N, 105 20 44E', 10, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (29998, 870, 87, 'Phú Thuận A', 'Phu-Thuan-A-29998', 'Xã', '10 44 14N, 105 18 26E', 11, 1),
 (30001, 871, 87, 'Tràm Chim', 'Tram-Chim-30001', 'Thị Trấn', '10 40 17N, 105 33 36E', 1, 1),
 (30004, 871, 87, 'Hoà Bình', 'Hoa-Binh-30004', 'Xã', '10 46 35N, 105 37 47E', 2, 1),
@@ -11654,8 +11654,8 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (31531, 943, 94, 'An Lạc Thôn', 'An-Lac-Thon-31531', 'Xã', '9 53 55N, 105 55 29E', 2, 1),
 (31534, 943, 94, 'Xuân Hòa', 'Xuan-Hoa-31534', 'Xã', '9 53 12N, 105 53 23E', 3, 1),
 (31537, 943, 94, 'Phong Nẫm', 'Phong-Nam-31537', 'Xã', '9 53 40N, 105 57 03E', 4, 1),
-(31540, 943, 94, 'An Lạc Tây', 'An-Lac-Tay-31540', 'Xã', '9 50 48N, 105 59 23E', 5, 1)";
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
+(31540, 943, 94, 'An Lạc Tây', 'An-Lac-Tay-31540', 'Xã', '9 50 48N, 105 59 23E', 5, 1)");
+$db->query("INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_ward (ward_id, district_id, city_id, title, alias, type, location, weight, status) VALUES
 (31543, 943, 94, 'Trinh Phú', 'Trinh-Phu-31543', 'Xã', '9 50 48N, 105 55 41E', 6, 1),
 (31546, 943, 94, 'Ba Trinh', 'Ba-Trinh-31546', 'Xã', '9 49 46N, 105 52 50E', 7, 1),
 (31549, 943, 94, 'Thới An Hội', 'Thoi-An-Hoi-31549', 'Xã', '9 48 55N, 105 58 02E', 8, 1),
@@ -11914,4 +11914,4 @@ $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_"
 (32242, 973, 96, 'Viên An', 'Vien-An-32242', 'Xã', '8 39 22N, 104 50 59E', 4, 1),
 (32244, 973, 96, 'Rạch Gốc', 'Rach-Goc-32244', 'Thị Trấn', '', 5, 1),
 (32245, 973, 96, 'Tân Ân', 'Tan-An-32245', 'Xã', '8 38 45N, 105 03 22E', 6, 1),
-(32248, 973, 96, 'Đất Mũi', 'Dat-Mui-32248', 'Xã', '8 36 41N, 104 47 12E', 7, 1)";
+(32248, 973, 96, 'Đất Mũi', 'Dat-Mui-32248', 'Xã', '8 36 41N, 104 47 12E', 7, 1)");
