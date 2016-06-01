@@ -53,7 +53,7 @@ if( ACTION_METHOD == 'weight' )
 
 			$db->query( $query );
 
-			nv_del_moduleCache( $module_name );
+			$nv_Cache->delMod( $module_name );
 
 			nv_insert_logs( NV_LANG_DATA, $module_name, 'Change Weight district', "district_id: " . $district_id, $admin_info['userid'] );
 
@@ -121,7 +121,7 @@ if( ACTION_METHOD == 'delete' )
 
 			nv_insert_logs( NV_LANG_DATA, $module_name, 'log_del_district', implode( ', ', $_del_array ), $admin_info['userid'] );
 
-			nv_del_moduleCache( $module_name );
+			$nv_Cache->delMod( $module_name );
 
 			$info['success'] = $lang_module['district_delete_success'];
 		}
@@ -247,7 +247,7 @@ if( ACTION_METHOD == 'add' || ACTION_METHOD == 'edit' )
 
 			if( empty( $error ) )
 			{
-				nv_del_moduleCache( $module_name );
+				$nv_Cache->delMod( $module_name );
 				Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op . '&city_id=' . $data['city_id'] );
 				die();
 			}

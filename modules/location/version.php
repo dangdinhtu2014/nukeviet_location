@@ -14,10 +14,10 @@ $module_version = array(
     "submenu" => "main", 
 	"is_sysmod" => 0, 
     "virtual" => 1, 
-    "version" => "4.0.23", 
+    "version" => "4.0.29", 
     "date" => "Mon, 19 Jan 2015 11:09:15 GMT", 
     "author" => "DANG DINH TU (dlinhvan@gmail.com)", 
-    "note" => "", "uploads_dir" => array( 
+    "note" => "update by webvang (hoang.nguyen@webvang.vn)", "uploads_dir" => array( 
         $module_name 
     ) 
 );
