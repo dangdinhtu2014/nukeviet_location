@@ -17,29 +17,29 @@ define( 'ACTION_METHOD', $nv_Request->get_string( 'action', 'get,post', '' ) );
 define( 'TABLE_LOCALION_NAME', NV_PREFIXLANG . '_' . $module_data ); 
 function getCity()
 {
-	global $module_name;
+	global $nv_Cache,$module_name;
 
 	$sql = 'SELECT city_id, title FROM ' . TABLE_LOCALION_NAME . '_city WHERE status=1 ORDER BY weight ASC';
 	
-	return nv_db_cache( $sql, 'city_id', $module_name );
+	return $nv_Cache->db( $sql, 'city_id', $module_name );
 }
 
 function getDistrict()
 {
-	global $module_name;
+	global $nv_Cache,$module_name;
 
 	$sql = 'SELECT district_id, city_id, title FROM ' . TABLE_LOCALION_NAME . '_district WHERE status=1 ORDER BY weight ASC';
 
-	return nv_db_cache( $sql, 'district_id', $module_name );
+	return $nv_Cache->db( $sql, 'district_id', $module_name );
 }
 
 function getWard()
 {
-	global $module_name;
+	global $nv_Cache,$module_name;
 
 	$sql = 'SELECT ward_id, district_id, city_id, title FROM ' . TABLE_LOCALION_NAME . '_ward WHERE status=1 ORDER BY weight ASC';
 	
-	return nv_db_cache( $sql, 'ward_id', $module_name );
+	return $nv_Cache->db( $sql, 'ward_id', $module_name );
 }
 
 
